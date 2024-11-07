@@ -19,7 +19,7 @@ if button_click:
     st.write("walking through inbox...")
     progress_bar.progress(30)
 
-    # Fetch unsubscribe links from emails
+    #Fetch unsubscribe links from emails
     links = read_mails()
     progress_bar.progress(50)
 
@@ -27,13 +27,13 @@ if button_click:
         progress_bar.progress(100)
         st.write("No unsubscribe links found in the last 3 days.")
     else:
-        # Check links
+        #Check links
         success_links, failed_links = fetch_links(links)
         progress_bar.progress(100)
 
         col1,col2 = st.columns(2, gap = 'large')
         with col1:
-            # Display results
+            #Display results
             st.subheader("Successfully Visited Links:")
             with st.container(border = True):
                 if success_links:

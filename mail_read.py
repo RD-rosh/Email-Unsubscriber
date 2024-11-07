@@ -10,7 +10,7 @@ load_dotenv()
 username = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
 
-# Connect to mail
+#Connect to mail
 def connect_to_mail():
     mail = imaplib.IMAP4_SSL('imap.gmail.com')
     mail.login(username, password)
@@ -20,7 +20,7 @@ def connect_to_mail():
 #Get unsubscribe links from mails ]
 def read_mails():
     mail = connect_to_mail()
-    date_since = (datetime.now() - timedelta(days=3)).strftime('%d-%b-%Y')
+    date_since = (datetime.now() - timedelta(days=7)).strftime('%d-%b-%Y')
     #get mail ids that body contains unsubscribe
     _, search_data = mail.search(None, f'(SINCE {date_since} BODY "unsubscribe")')
     #get matching mailIds
@@ -43,7 +43,7 @@ def read_mails():
     mail.logout()
     return links
 
-# Decode html content
+#Decode html content
 def decode_payload(part):
     try:
         #decode using UTF8
